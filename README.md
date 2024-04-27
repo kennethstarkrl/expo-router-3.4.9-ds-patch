@@ -4,7 +4,7 @@ This unofficial patch allows you to pass the slug param to the options rather th
 
 You'll want to set the slug param in the options object to the path of your slug file.
 
-This patch is still backwards compatable so you could have screen compnents outside the map that use the slug file path as the name.
+This patch is still backwards compatable so you could have screen components outside the map that use the slug file path as the name.
 
 ### **Example useage**
 ```js
