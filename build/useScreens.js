@@ -26,11 +26,14 @@ function getSortedChildren(children, order, initialRouteName) {
         }
         let matchIndex = entries.findIndex((child) => {return(child.route === name || child.route === options?.slug)});
         if (matchIndex === -1) {
-            console.warn(`[Layout children]: No route named "${name}" exists in nested children:`, children.map(({ route }) => route));
             
-            let dynamicChild = {...children[children.findIndex((child)=>{return(child.route === options?.slug)})],route:name? name : `dynamicScreen${index}`};
-            entries.push(dynamicChild);
-            matchIndex = entries.findIndex((child) => {return(child.route === name || child.route === options?.slug)});
+            let dynamicChildren = {...children[children.findIndex((child)=>{return(child.route === options?.slug)})],route:name? name : `${route.name}-ds-${index}`};
+            if(dynamicChildren){
+                entries.push(dynamicChildren);
+                matchIndex = entries.findIndex((child) => {return(child.route === name || child.route === options?.slug)});
+            }else{
+                console.warn(`[Layout children]: No route named "${name}" exists in nested children:`, children.map(({ route }) => route));
+            }
         }
         
         if(matchIndex >= 0) {
